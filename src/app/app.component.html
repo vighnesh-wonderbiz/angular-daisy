@@ -1,0 +1,20 @@
+<main class="mx-auto">
+  <nav>
+    <app-nav-menu></app-nav-menu>
+  </nav>
+  <div class="drawer drawer-open">
+    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content m-5 sm:m-10">
+      <router-outlet></router-outlet>
+      <!-- <app-hamburger-menu></app-hamburger-menu> -->
+    </div>
+    <div class="drawer-side shadow-md max-w-[4.3rem] sm:max-w-36">
+      <!-- <label
+        for="my-drawer"
+        aria-label="close sidebar"
+        class="drawer-overlay"
+      ></label> -->
+      <app-sidebar></app-sidebar>
+    </div>
+  </div>
+</main>
