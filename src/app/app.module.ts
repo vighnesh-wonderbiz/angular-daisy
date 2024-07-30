@@ -16,6 +16,7 @@ import { NgIconsModule } from '@ng-icons/core';
 import { bootstrapHouse, bootstrapPerson } from '@ng-icons/bootstrap-icons';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     SidebarComponent,
     UserProfileComponent,
     SettingsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

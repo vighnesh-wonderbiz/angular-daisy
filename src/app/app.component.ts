@@ -1,5 +1,6 @@
 import { Component, CSP_NONCE, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { navigations } from './utils/constants';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
   isOn: boolean = true;
   isMobile: boolean = true;
   currPath: string = '';
+  navigations: { name: string; link: string; icon: string }[] = [];
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
@@ -24,6 +26,7 @@ export class AppComponent {
   ngOnInit() {
     this.isOn = window.innerWidth < 640;
     this.isMobile = window.innerWidth < 640;
+    this.navigations = navigations;
   }
   toggleMenu = (e: boolean) => {
     this.isOn = e;

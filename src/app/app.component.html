@@ -1,23 +1,15 @@
 <main class="mx-auto">
   <nav>
-    <div class="navbar shadow-md bg-base-100 grid grid-cols-3 sm:px-16 sm:py-3">
+    <div class="navbar shadow-md bg-base-100 grid grid-cols-3 sm:py-3">
       <div
         aria-label="open sidebar"
-        class="btn btn-square btn-ghost drawer-button"
+        class="btn btn-square btn-ghost drawer-button me-auto"
         (click)="toggleMenu(!isOn)"
       >
         <i class="fa-solid fa-bars fa-xl"></i>
       </div>
       <div class="mx-auto min-h-10">
-        <a class="btn btn-ghost text-xl flex overflow-hidden" routerLink="/">
-          <div class="flex flex-col sm:flex-row justify-center items-center">
-            <img
-              src="https://em-content.zobj.net/source/microsoft/74/briefcase_1f4bc.png"
-              class="w-7 h-7 sm:w-10 sm:h-10"
-            />
-            <span class="hidden sm:block sm:ms-2">JobPortal</span>
-          </div>
-        </a>
+        <app-logo></app-logo>
       </div>
       <div class="ms-auto">
         <app-profile></app-profile>
@@ -30,96 +22,44 @@
       <router-outlet></router-outlet>
     </div>
     <div
-      class="min-h-[calc(100vh-64px)] sm:min-h-[calc(100vh-74px)]"
+      class="min-h-[calc(100vh-116px)] sm:min-h-[calc(100vh-126px)]"
       [ngClass]="{ 'drawer-open': !isMobile && !isOn }"
     >
       <ul
-        class="menu shadow-md text-base-content min-h-full p-0 mx-auto flex flex-col items-center justify-start border-solid border-black"
+        class="menu shadow-lg text-base-content min-h-full p-0 mx-auto flex flex-col items-center justify-start"
         [ngClass]="{ 'w-0 sm:w-16': isOn, 'w-36': !isOn ,}"
       >
-        <li class="mb-4 pt-5" (click)="toggleMenu(true)">
-          <a class="p-0" routerLink="/"
-            ><div
-              class="tooltip"
-              data-tip="Home"
-              [ngClass]="{
-                hidden: isMobile && isOn,
-                block: !isMobile && !isOn
-              }"
-            >
-              <ng-icon
-                size="25"
-                [ngClass]="this.currPath == '/' ? 'text-blue-600' : ''"
-                name="bootstrapHouse"
-              ></ng-icon>
-            </div>
-            <span
-              class="text-md"
-              [ngClass]="{
-                hidden: isOn,
-                block: !isOn,
-                'text-blue-600': this.currPath == '/'
-              }"
-              >Home</span
-            ></a
-          >
-        </li>
-
-        <li class="mb-4 pt-5" (click)="toggleMenu(true)">
-          <a class="p-0" routerLink="/about"
-            ><div
-              class="tooltip"
-              data-tip="About"
-              [ngClass]="{
-                hidden: isMobile && isOn,
-                block: !isMobile && !isOn
-              }"
-            >
-              <ng-icon
-                size="25"
-                [ngClass]="this.currPath == '/about' ? 'text-blue-600' : ''"
-                name="bootstrapPerson"
-              ></ng-icon>
-            </div>
-            <span
-              class="text-md"
-              [ngClass]="{
-                hidden: isOn,
-                block: !isOn,
-                'text-blue-600': this.currPath == '/about'
-              }"
-              >About</span
-            ></a
-          >
-        </li>
-      </ul>
-    </div>
-    <!-- <div
-        class="shadow-md dark:shadow-lg min-h-[92.5vh] max-w-[4rem]"
-        [ngClass]="isOn ? 'max-w-[6rem]' : 'max-w-40'"
-      >
-        <ul class="menu text-base-content w-40 py-10 sm:p-8">
-          <li class="w-6 mb-4" (click)="toggleMenu(true)">
-            <a routerLink="/"
-              ><div class="tooltip" data-tip="Home">
-                <ng-icon size="25" name="bootstrapHouse"></ng-icon>
+        <ng-container *ngFor="let nav of navigations">
+          <li class="mb-4 pt-5" (click)="toggleMenu(true)">
+            <a class="p-0" [routerLink]="nav.link"
+              ><div
+                class="tooltip"
+                data-tip="Home"
+                [ngClass]="{
+                  hidden: isMobile && isOn,
+                  block: !isMobile && !isOn
+                }"
+              >
+                <ng-icon
+                  size="25"
+                  [ngClass]="this.currPath == nav.link ? 'text-blue-600' : ''"
+                  [name]="nav.icon"
+                ></ng-icon>
               </div>
-              <span class="text-md" [ngClass]="isOn ? 'hidden' : 'block'"
-                >Home</span
+              <span
+                class="text-md"
+                [ngClass]="{
+                  hidden: isOn,
+                  block: !isOn,
+                  'text-blue-600': this.currPath == nav.link
+                }"
+                >{{ nav.name }}</span
               ></a
             >
           </li>
-          <li class="w-6 mb-4" (click)="toggleMenu(true)">
-            <a routerLink="/about">
-              <div class="tooltip" data-tip="About">
-                <ng-icon size="25" name="bootstrapPerson"></ng-icon>
-              </div>
-              <span class="text-md" [ngClass]="isOn ? 'hidden ' : 'block'"
-                >About</span
-              >
-            </a>
-          </li>
-        </ul>
-      </div> -->
+        </ng-container>
+      </ul>
+    </div>
   </div>
 </main>
+<app-footer></app-footer>
