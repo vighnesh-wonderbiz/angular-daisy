@@ -1,0 +1,73 @@
+<div class="md:w-2/5 mx-auto grid grid-rows-5 gap-5">
+  <div class="grid md:grid-cols-2 gap-x-5">
+    <div class="form-control">
+      <label class="input input-bordered flex items-center gap-2">
+        <i class="fa-regular fa-user"></i>
+        <input type="text" class="grow" placeholder="Search" />
+      </label>
+      <p>Error</p>
+    </div>
+    <div class="form-control">
+      <label class="input input-bordered flex items-center gap-2">
+        <i class="fa-regular fa-envelope"></i>
+        <input type="text" class="grow" placeholder="Email" />
+      </label>
+      <p>Error</p>
+    </div>
+  </div>
+  <div class="grid lg:grid-cols-2 gap-x-5 items-center">
+    <div class="form-control">
+      <label class="form-control w-full max-w-xs me-auto">
+        <div class="label">
+          <span class="label-text"></span>
+          <span class="label-text-alt"></span>
+        </div>
+        <select class="select select-bordered">
+          <option disabled selected>Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Transgender</option>
+        </select>
+      </label>
+      <p>Error</p>
+    </div>
+    <div class="form-control">
+      <div class="label">
+        <label class="label">Are you Married?</label>
+        <div class="flex justify-evenly me-auto">
+          <div class="flex items-center">
+            <input id="y" type="radio" name="radio-1" class="radio me-auto" />
+            <label for="y" class="label"> Yes </label>
+          </div>
+          <div class="flex items-center">
+            <input id="n" type="radio" name="radio-1" class="radio me-auto" />
+            <label for="n" class="label"> No </label>
+          </div>
+        </div>
+      </div>
+      <p class="md:ms-2">Error</p>
+    </div>
+  </div>
+  <div class="form-control">
+    <p>Languages Known</p>
+    <div class="grid grid-cols-2 md:grid-cols-5 md:gap-5 items-center">
+      <div class="flex items-center justify-center">
+        <input type="checkbox" class="checkbox" id="python" />
+        <label for="python" class="label ms-2 me-auto"> Python</label>
+      </div>
+      <div class="flex items-center justify-center">
+        <input type="checkbox" class="checkbox" id="js" />
+        <label for="js" class="label ms-2 me-auto"> JavaScript </label>
+      </div>
+      <div class="flex items-center justify-center">
+        <input type="checkbox" class="checkbox" id="asp" />
+        <label for="asp" class="label ms-2 me-auto"> Asp.Net </label>
+      </div>
+      <div class="flex items-center justify-center">
+        <input type="checkbox" class="checkbox" id="cpp" />
+        <label for="cpp" class="label ms-2 me-auto"> C++ </label>
+      </div>
+    </div>
+    <p>Error</p>
+  </div>
+</div>
