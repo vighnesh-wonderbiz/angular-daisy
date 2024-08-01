@@ -13,11 +13,18 @@ import { DrawerSideComponent } from './components/drawer-side/drawer-side.compon
 import { ProfileComponent } from './components/profile/profile.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapEnvelope, bootstrapHouse, bootstrapPerson, bootstrapUiChecksGrid } from '@ng-icons/bootstrap-icons';
+import {
+  bootstrapEnvelope,
+  bootstrapHouse,
+  bootstrapPerson,
+  bootstrapUiChecksGrid,
+} from '@ng-icons/bootstrap-icons';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserformComponent } from './pages/userform/userform.component';
+import { FormsModule } from '@angular/forms';
+import { MyformComponent } from './components/myform/myform.component';
 
 @NgModule({
   declarations: [
@@ -35,11 +42,18 @@ import { UserformComponent } from './pages/userform/userform.component';
     SettingsComponent,
     FooterComponent,
     UserformComponent,
+    MyformComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgIconsModule.withIcons({ bootstrapHouse, bootstrapPerson,bootstrapUiChecksGrid ,bootstrapEnvelope}),
+    FormsModule,
+    NgIconsModule.withIcons({
+      bootstrapHouse,
+      bootstrapPerson,
+      bootstrapUiChecksGrid,
+      bootstrapEnvelope,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

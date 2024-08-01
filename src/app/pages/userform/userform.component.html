@@ -1,73 +1,156 @@
-<div class="md:w-2/5 mx-auto grid grid-rows-5 gap-5">
-  <div class="grid md:grid-cols-2 gap-x-5">
-    <div class="form-control">
-      <label class="input input-bordered flex items-center gap-2">
-        <i class="fa-regular fa-user"></i>
-        <input type="text" class="grow" placeholder="Search" />
-      </label>
-      <p>Error</p>
+<div
+  class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 max-w-sm py-3 px-4 md:py-4 md:px-5"
+>
+  <h2 class="mt-1 text-slate-950 font-bold text-xl dark:text-neutral-500">
+    Add User
+  </h2>
+
+  <form class="max-w-md mx-auto mt-5">
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="text"
+          autocomplete="off"
+          name="name"
+          id="name"
+          placeholder=" "
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          [(ngModel)]="form.name"
+          (input)="changeErrState('name', form.name)"
+          required
+        />
+        <label
+          for="name"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >First name</label
+        >
+        <p class="w-full h-5 text-sm text-red-500">
+          {{ this.error["name"].isError ? this.error["name"].message : "" }}
+        </p>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="email"
+          autocomplete="off"
+          name="email"
+          id="email"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          [(ngModel)]="form.email"
+          (input)="changeErrState('email', form.email)"
+          placeholder=" "
+          required
+        />
+        <label
+          for="email"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Email address</label
+        >
+        <p class="w-full h-5 text-sm text-red-500">
+          {{ this.error["email"].isError ? this.error["email"].message : "" }}
+        </p>
+      </div>
     </div>
-    <div class="form-control">
-      <label class="input input-bordered flex items-center gap-2">
-        <i class="fa-regular fa-envelope"></i>
-        <input type="text" class="grow" placeholder="Email" />
-      </label>
-      <p>Error</p>
+
+    <div class="mb-6">
+      <label
+        for="countries"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Select your Gender</label
+      >
+      <select
+        id="countries"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [ngClass]="{ 'select-error': this.error['gender'].isError }"
+        [(ngModel)]="form.gender"
+        (change)="changeErrState('gender', form.gender)"
+        name="gender"
+      >
+        <option disabled value="none">Select gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="Transgender">Transgender</option>
+      </select>
+
+      <p class="w-full h-5 text-sm mt-1 text-red-500">
+        {{ this.error["gender"].isError ? this.error["gender"].message : "" }}
+      </p>
     </div>
-  </div>
-  <div class="grid lg:grid-cols-2 gap-x-5 items-center">
-    <div class="form-control">
-      <label class="form-control w-full max-w-xs me-auto">
-        <div class="label">
-          <span class="label-text"></span>
-          <span class="label-text-alt"></span>
+    <div class="mb-6">
+      <label
+        for="countries"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Languages</label
+      >
+
+      <div class="flex flex-wrap">
+        <div class="flex items-center me-4">
+          <input
+            id="inline-1-checkbox"
+            type="checkbox"
+            name="python"
+            [(ngModel)]="langArr['python'].selected"
+            class="w-4 h-4 checkbox text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            #python
+            (change)="handleCheck(python.checked, 'python')"
+          />
+          <label
+            for="inline-1-checkbox"
+            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >Python</label
+          >
         </div>
-        <select class="select select-bordered">
-          <option disabled selected>Select Gender</option>
-          <option>Male</option>
-          <option>Female</option>
-          <option>Transgender</option>
-        </select>
-      </label>
-      <p>Error</p>
-    </div>
-    <div class="form-control">
-      <div class="label">
-        <label class="label">Are you Married?</label>
-        <div class="flex justify-evenly me-auto">
-          <div class="flex items-center">
-            <input id="y" type="radio" name="radio-1" class="radio me-auto" />
-            <label for="y" class="label"> Yes </label>
-          </div>
-          <div class="flex items-center">
-            <input id="n" type="radio" name="radio-1" class="radio me-auto" />
-            <label for="n" class="label"> No </label>
-          </div>
+        <div class="flex items-center me-4">
+          <input
+            id="inline-2-checkbox"
+            type="checkbox"
+            name="js"
+            [(ngModel)]="langArr['js'].selected"
+            class="w-4 h-4 checkbox text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            #js
+            (change)="handleCheck(js.checked, 'js')"
+          />
+          <label
+            for="inline-2-checkbox"
+            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >Javascript</label
+          >
+        </div>
+        <div class="flex items-center me-4">
+          <input
+            id="inline-checked-checkbox"
+            type="checkbox"
+            [(ngModel)]="langArr['dotnet'].selected"
+            class="w-4 h-4 checkbox text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            #dotnet
+            name="dotnet"
+            (change)="handleCheck(dotnet.checked, 'dotnet')"
+          />
+          <label
+            for="inline-checked-checkbox"
+            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >Dotnet</label
+          >
         </div>
       </div>
-      <p class="md:ms-2">Error</p>
+
+      <p class="w-full h-5 text-sm mt-1 text-red-500">
+        {{
+          this.error["languages"].isError ? this.error["languages"].message : ""
+        }}
+      </p>
     </div>
-  </div>
-  <div class="form-control">
-    <p>Languages Known</p>
-    <div class="grid grid-cols-2 md:grid-cols-5 md:gap-5 items-center">
-      <div class="flex items-center justify-center">
-        <input type="checkbox" class="checkbox" id="python" />
-        <label for="python" class="label ms-2 me-auto"> Python</label>
-      </div>
-      <div class="flex items-center justify-center">
-        <input type="checkbox" class="checkbox" id="js" />
-        <label for="js" class="label ms-2 me-auto"> JavaScript </label>
-      </div>
-      <div class="flex items-center justify-center">
-        <input type="checkbox" class="checkbox" id="asp" />
-        <label for="asp" class="label ms-2 me-auto"> Asp.Net </label>
-      </div>
-      <div class="flex items-center justify-center">
-        <input type="checkbox" class="checkbox" id="cpp" />
-        <label for="cpp" class="label ms-2 me-auto"> C++ </label>
-      </div>
-    </div>
-    <p>Error</p>
+
+    <button
+      type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      (click)="handleSubmit()"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+<div class="toast toast-end" [ngClass]="isSubmitted ? 'block' : 'hidden'">
+  <div class="alert alert-success">
+    <span>Data saved</span>
   </div>
 </div>

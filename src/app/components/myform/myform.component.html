@@ -1,0 +1,137 @@
+<div class="form-control max-w-2xl mx-auto p-5">
+    <h1 class="mb-10 font-bold text-center text-3xl">My fancy form</h1>
+    <div class="flex flex-wrap gap-y-5 gap-0 sm:gap-x-4">
+      <div class="flex flex-col">
+        <div class="flex">
+          <label for="name" class="label me-4">Name</label>
+          <input
+            type="text"
+            id="name"
+            class="input input-bordered"
+            placeholder="Enter user name..."
+            name="name"
+            [(ngModel)]="form.name"
+            (input)="changeErrState('name', form.name)"
+            [ngClass]="{ 'input-error': this.error[0].isError }"
+          />
+        </div>
+        <p
+          class="label me-4 text-red-600"
+          [ngClass]="this.error[0].isError ? 'block' : 'hidden'"
+        >
+          {{ this.error[0].message }}
+        </p>
+      </div>
+      <div class="flex flex-col">
+        <div class="flex">
+          <label for="email" class="label me-4">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="input input-bordered"
+            (input)="checkEmail()"
+            placeholder="Enter email..."
+            [(ngModel)]="form.email"
+            name="email"
+            [ngClass]="{ 'input-error': this.error[3].isError }"
+          />
+        </div>
+        <p
+          class="label me-4 text-red-600"
+          [ngClass]="this.error[3].isError ? 'block' : 'hidden'"
+        >
+          {{ this.error[3].message }}
+        </p>
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-y-5 gap-0 sm:gap-x-4">
+      <div class="flex items-center justify-center me-3">
+        <label class="label me-4">Gender</label>
+        <div class="flex">
+          <label class="form-control w-full max-w-xs">
+            <div class="label">
+              <span
+                class="label-text text-red-600"
+                [ngClass]="this.error[2].isError ? 'block' : 'hidden'"
+              >
+                {{ this.error[2].message }}</span
+              >
+            </div>
+            <select
+              class="select select-bordered"
+              [ngClass]="{ 'select-error': this.error[2].isError }"
+              [(ngModel)]="form.gender"
+              name="gender"
+              (change)="changeErrState('gender', form.gender)"
+            >
+              <option disabled selected value="none">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="trans">Transgender</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="flex items-center md:ms-14">
+        <label for="married" class="label me-4">Is Married</label>
+        <input id="isMarried" type="checkbox" class="toggle" />
+      </div>
+    </div>
+    <div class="form-control mt-5">
+      <div class="flex">
+        <label class="label me-4">Languages</label>
+        <div class="flex flex-wrap gap-5 items-center">
+          <div class="flex">
+            <input
+              #python
+              id="python"
+              type="checkbox"
+              (change)="handleCheck(python.checked, 'cpp')"
+              class="checkbox me-4"
+            />
+            <label for="python">Python</label>
+          </div>
+          <div class="flex">
+            <input
+              #js
+              id="js"
+              type="checkbox"
+              (change)="handleCheck(js.checked, 'js')"
+              class="checkbox me-4"
+            />
+            <label for="js">Javascript</label>
+          </div>
+          <div class="flex">
+            <input
+              #cpp
+              id="cpp"
+              type="checkbox"
+              class="checkbox me-4"
+              (change)="handleCheck(cpp.checked, 'cpp')"
+            />
+            <label for="cpp">C++</label>
+          </div>
+          <div class="flex">
+            <input
+              #dotnet
+              id="dotnet"
+              type="checkbox"
+              (change)="handleCheck(dotnet.checked, 'dotnet')"
+              class="checkbox me-4"
+            />
+            <label for="dotnet">Dotnet</label>
+          </div>
+        </div>
+      </div>
+      <p
+        class="text-red-600"
+        [ngClass]="this.error[4].isError ? 'block' : 'hidden'"
+      >
+        {{ this.error[4].message }}
+      </p>
+    </div>
+    <div class="flex items-center justify-center mt-5">
+      <button class="btn btn-primary" (click)="handleSubmit()">Primary</button>
+    </div>
+  </div>
+  
